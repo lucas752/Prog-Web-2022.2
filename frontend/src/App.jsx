@@ -1,12 +1,17 @@
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Login } from './pages/Login/Login';
+import { SingUp } from './pages/SingUp/SingUp';
 
 function App() {
   
 
   return (
-    <h1 className="text-3xl  underline">
-    Hello world!
-  </h1>
+    <Router>
+        <Routes>
+              <Route exact path='/' element={<Login/>}></Route>
+              <Route exact path='/singup' element={<SingUp/>}></Route>
+        </Routes>
+    </Router>
   )
 }
 

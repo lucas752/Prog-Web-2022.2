@@ -1,7 +1,11 @@
+import { LoginArea } from "../../components/template/LoginArea/LoginArea";
+
 export function Login(){
     return(
         <div>
-            <p>login</p>
+            <div>Header</div>
+            <LoginArea/>
+            <div>Footer</div>
         </div>
     )
 }

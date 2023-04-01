@@ -1,5 +1,7 @@
 package com.upe.editais.editaisupe.models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,25 +24,25 @@ public class Notices {
 	@Column(nullable = false)
 	private String title;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(nullable = false)
-	private String term;
+	@Column(nullable = false, columnDefinition = "DATE")
+	private LocalDate term;
 	
 	@Column(nullable = false)
 	private String domain;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String requirements;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String criteria;
 	
 	public Notices() {
 	}
 	
-	public Notices(String title, String description, String term, String domain, String requirements, String criteria) {
+	public Notices(String title, String description, LocalDate term, String domain, String requirements, String criteria) {
 		this.title = title;
 		this.description = description;
 		this.term = term;
@@ -69,11 +71,11 @@ public class Notices {
 		this.description = description;
 	}
 
-	public String getTerm() {
+	public LocalDate getTerm() {
 		return term;
 	}
 
-	public void setTerm(String term) {
+	public void setTerm(LocalDate term) {
 		this.term = term;
 	}
 

@@ -23,6 +23,16 @@ public class AuthController {
     @PostMapping("/register")
     public GeneralUser registerUser(@RequestBody GeneralUser newUser) {
 
+        // Verifica se o email ou CPF do usuário já existem no banco de dados
+        GeneralUser existigUser = uRepository.findByEmail(newUser.getEmail());
+        if (existigUser != null) {
+            throw new RuntimeException("Email já cadastrado");
+        }
+        existigUser = uRepository.findByCPF(newUser.getCpf());
+        if(existigUser != null) {
+            throw new RuntimeException("CPF já cadastrado");
+        }
+
         // Faz hash da senha do usuário antes de salvar no banco de dados
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);

@@ -19,7 +19,7 @@ public class GeneralUser {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "cpf", nullable = false)
+	@Column(name = "cpf", nullable = false, length = 11)
 	private String cpf;
 
 	@Column(name = "email", nullable = false)

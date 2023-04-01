@@ -16,7 +16,7 @@ import com.upe.editais.editaisupe.models.Notices;
 import com.upe.editais.editaisupe.repositories.NoticesRepository;
 
 @RestController
-@RequestMapping("/Notices")
+@RequestMapping("/notices")
 public class NoticesController {
 	
 	@Autowired

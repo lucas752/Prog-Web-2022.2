@@ -6,4 +6,8 @@ import com.upe.editais.editaisupe.models.GeneralUser;
 
 public interface IGeneralUserRepository extends CrudRepository<GeneralUser, Long> {
 
+    public GeneralUser findByEmail(String email);
+
+    public GeneralUser findByCPF(String cpf);
+
 }

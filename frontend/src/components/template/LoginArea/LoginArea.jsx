@@ -8,16 +8,28 @@ import { useState } from "react";
 export function LoginArea(){
 
     const [email, setEmail] = useState("");
+    const [password, setPassaword] = useState("")
     const [emailValidad, setEmailValidad] = useState()
+    const [passwordValidad, setPassawordValidad] = useState()
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
         
     }
 
-    function emailTest(){ // falta instanciar, mas está funcionando 
+    const handlePasswordChange = (e) => {
+        setPassaword(e.target.value)
+        
+    }
+
+    function formTest(){ // falta instanciar, mas está funcionando 
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         setEmailValidad(regex.test(email))
+        if(password.length < 6){
+            setPassawordValidad(false);
+        }else{
+            setPassawordValidad(true);
+        }
     }
 
     
@@ -39,12 +51,13 @@ export function LoginArea(){
                 </div>
                 <div className="mb-[50px]">
                     <p className="my-[4px] text-sm ">Senha</p>
-                    <Input type="password" place="Digite seu senha:" />
+                    <Input type="password" place="Digite seu senha:" func={handlePasswordChange} />
+                    {!passwordValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione uma senha com mais de 6 caracteres</p>}
                     
                 </div>
                 
                 <div className="">
-                    <Button name="Login"  style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
+                    <Button name="Login" func={formTest} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
                 </div>
 
                 <div className="mt-[20px]">

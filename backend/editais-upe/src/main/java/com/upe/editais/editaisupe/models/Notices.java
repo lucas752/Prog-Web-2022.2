@@ -39,9 +39,6 @@ public class Notices {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String criteria;
 	
-	public Notices() {
-	}
-	
 	public Notices(String title, String description, LocalDate term, String domain, String requirements, String criteria) {
 		this.title = title;
 		this.description = description;

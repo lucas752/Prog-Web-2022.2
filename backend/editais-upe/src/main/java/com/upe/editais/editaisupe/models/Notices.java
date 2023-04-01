@@ -29,7 +29,7 @@ public class Notices {
 	private String term;
 	
 	@Column(nullable = false)
-	private String area;
+	private String domain;
 	
 	@Column(nullable = false)
 	private String requirements;
@@ -40,11 +40,11 @@ public class Notices {
 	public Notices() {
 	}
 	
-	public Notices(String title, String description, String term, String area, String requirements, String criteria) {
+	public Notices(String title, String description, String term, String domain, String requirements, String criteria) {
 		this.title = title;
 		this.description = description;
 		this.term = term;
-		this.area = area;
+		this.domain = domain;
 		this.requirements = requirements;
 		this.criteria = criteria;
 	}
@@ -77,12 +77,12 @@ public class Notices {
 		this.term = term;
 	}
 
-	public String getArea() {
-		return area;
+	public String getDomain() {
+		return domain;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setDomain(String area) {
+		this.domain = area;
 	}
 
 	public String getRequirements() {

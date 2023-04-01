@@ -52,7 +52,7 @@ public class NoticesController {
 			existingNotice.setTitle(newNotice.getTitle());
 			existingNotice.setDescription(newNotice.getDescription());
 			existingNotice.setTerm(newNotice.getTerm());
-			existingNotice.setArea(newNotice.getArea());
+			existingNotice.setDomain(newNotice.getDomain());
 			existingNotice.setRequirements(newNotice.getRequirements());
 			existingNotice.setCriteria(newNotice.getCriteria());
 			return nRepository.save(existingNotice);

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.upe.editais.editaisupe.models.Notices;
-import com.upe.editais.editaisupe.repositories.NoticesRepository;
+import com.upe.editais.editaisupe.repositories.INoticesRepository;
 
 @RestController
 @RequestMapping("/notices")
 public class NoticesController {
 	
 	@Autowired
-	private NoticesRepository nRepository;
+	private INoticesRepository nRepository;
 	
 	@GetMapping
 	public Iterable<Notices> getNotices() {
@@ -54,7 +54,8 @@ public class NoticesController {
 			existingNotice.setTerm(newNotice.getTerm());
 			existingNotice.setDomain(newNotice.getDomain());
 			existingNotice.setRequirements(newNotice.getRequirements());
-			existingNotice.setCriteria(newNotice.getCriteria());
+			existingNotice.setCriteria(newNotice.getCriteria());
+
 			return nRepository.save(existingNotice);
 		} else {
 			return null;

@@ -35,34 +35,35 @@ export function LoginArea(){
     
 
     return(
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center my-[50px] ">
                 <div className="flex flex-col items-center justify-center bg-[#1C3C78] max-w-max p-[40px]  rounded-[12px] text-[#fff] shadow-2xl shadow-indigo-500/40">
 
-                
-                <div>
+                    <div className="max-w-max">
                     <Logo img={logoWhite} />
-                </div>
+                    </div>
 
-                <div className="mt-[50px] mb-[20px]">
-                    <p className="my-[4px] text-sm">Email</p>
-                    <Input type="email" place="Digite seu email:" func={handleEmailChange} />
-                    {!emailValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione um email válido</p>} 
+                    <div>
+                        <div className="mt-[50px] mb-[20px]">
+                            <p className="my-[4px] text-sm">Email</p>
+                            <Input type="email" place="Digite seu email:" func={handleEmailChange} />
+                            {!emailValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione um email válido</p>} 
                     
-                </div>
-                <div className="mb-[50px]">
-                    <p className="my-[4px] text-sm ">Senha</p>
-                    <Input type="password" place="Digite seu senha:" func={handlePasswordChange} />
-                    {!passwordValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione uma senha com mais de 6 caracteres</p>}
+                        </div>
+                        <div className="mb-[50px]">
+                            <p className="my-[4px] text-sm ">Senha</p>
+                            <Input type="password" place="Digite seu senha:" func={handlePasswordChange} />
+                            {!passwordValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione uma senha com mais de 6 caracteres</p>}
                     
-                </div>
-                
-                <div className="">
-                    <Button name="Login" func={formTest} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
-                </div>
+                        </div>
+                    </div>
 
-                <div className="mt-[20px]">
-                    <p className="text-sm ">Não possui conta? <Link to="/singup" className="text-[#EC2026]"> Cadastrar</Link> </p>
-                </div>
+                    <div className="">
+                        <Button name="Login" func={formTest} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
+                    </div>
+
+                    <div className="mt-[20px]">
+                        <p className="text-sm ">Não possui conta? <Link to="/singup" className="text-[#EC2026]"> Cadastrar</Link> </p>
+                    </div>
 
                 </div>
         </div>

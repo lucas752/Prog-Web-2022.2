@@ -5,5 +5,9 @@ export const content = [
 ];
 export const theme = {
   extend: {},
+  screens: { 
+    tablet: '600px',
+    desktop:  '1136px'
+  },
 };
 export const plugins = [];

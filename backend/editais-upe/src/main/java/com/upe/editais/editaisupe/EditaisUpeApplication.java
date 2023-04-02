@@ -28,16 +28,7 @@ public class EditaisUpeApplication {
 
 	@Bean
 	CommandLineRunner runner() {
-		return args -> {
-			GeneralUser user1 = new GeneralUser(
-					"Henrique",
-					"12345678",
-					"henrique@email.com",
-					"minhasenha123",
-					"Coordenador");
-
-			uRepository.save(user1);
-		};
+		return args -> {};
 	}
 
 }

@@ -28,7 +28,7 @@ public class AuthController {
         if (existigUser != null) {
             throw new RuntimeException("Email já cadastrado");
         }
-        existigUser = uRepository.findByCPF(newUser.getCpf());
+        existigUser = uRepository.findByCpf(newUser.getCpf());
         if(existigUser != null) {
             throw new RuntimeException("CPF já cadastrado");
         }

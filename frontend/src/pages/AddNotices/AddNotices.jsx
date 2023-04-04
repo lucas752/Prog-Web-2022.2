@@ -6,7 +6,9 @@ export function AddNotices() {
     return(
         <div>
             <Header/>
-            <AddNoticesArea/>
+            <div className="flex flex-row justify-center">
+                <AddNoticesArea/>
+            </div>
             <Footer/>
         </div>
     )

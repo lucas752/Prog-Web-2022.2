@@ -6,4 +6,6 @@ import com.upe.editais.editaisupe.models.Notices;
 
 public interface INoticesRepository extends CrudRepository<Notices, Long>{
 
+    public Iterable<Notices> findByDomain(String domain);
+
 }

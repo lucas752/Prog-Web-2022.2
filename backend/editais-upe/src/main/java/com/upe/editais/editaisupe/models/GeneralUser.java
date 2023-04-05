@@ -5,12 +5,19 @@ import lombok.AllArgsConstructor;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @AllArgsConstructor
 @Entity(name = "GeneralUser")
 @Table(name = "general_user", uniqueConstraints = {
 		@UniqueConstraint(name = "general_user_email_unique", columnNames = "email"),
 		@UniqueConstraint(name = "general_user_cpf_constraint", columnNames = "cpf") })
-public class GeneralUser {
+public class GeneralUser implements UserDetails {
 	@Id
 	@SequenceGenerator(name = "general_user_sequence", sequenceName = "general_user_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = SEQUENCE, generator = "general_user_sequence")
@@ -88,6 +95,42 @@ public class GeneralUser {
 
 	public void setPermission(String permission) {
 		this.permission = permission;
+	}
+	
+	//Métodos implementados para o Login - DAVID EMMANOEl
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

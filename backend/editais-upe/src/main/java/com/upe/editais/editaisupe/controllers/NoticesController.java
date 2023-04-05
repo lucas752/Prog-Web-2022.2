@@ -61,6 +61,12 @@ public class NoticesController {
 			return null;
 		}
 	}
+
+	// Filtragem de Editais pela sua área (Domain)
+	@GetMapping("/domain/{domain}")
+	public Iterable<Notices> getNoticesByDomain(@PathVariable("domain") String domain) {
+		return nRepository.findByDomain(domain);
+	}
 	
 	
 }

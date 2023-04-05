@@ -20,13 +20,22 @@ export function Home(){
             'term' : '24/04/2023',
             'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
         },
+
+        {
+            'title': 'EDITAL XXXX3',
+            'domain': 'Pesquisa',
+            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
+            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
+            'term' : '24/04/2023',
+            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
+        },
     ]
 
     return(
         <div className="flex flex-col justify-between h-screen">
             <Header/>
             <span>Página inicial</span>
-            <div className="flex flex-wrap justify-evenly">
+            <div className="grid grid-cols-12  gap-10 flex flex-wrap justify-evenly">
                 { card?.length ? card.map((data, index) =>
                     <NoticeCard 
                         term={data.term} 
@@ -36,7 +45,7 @@ export function Home(){
                         description={data.description} 
                         criteria={data.criteria} 
                     />
-                ) : <div></div>
+                ) : <div> <p>Recarregue a página</p> </div>
                 }
             </div>
 

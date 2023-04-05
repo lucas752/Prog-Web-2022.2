@@ -23,8 +23,8 @@ export function Home(){
     ]
 
     return(
-        <div>
-            <Header></Header>
+        <div className="flex flex-col justify-between h-screen">
+            <Header/>
             <span>Página inicial</span>
             <div className="flex flex-wrap justify-evenly">
                 { card?.length ? card.map((data, index) =>
@@ -40,7 +40,7 @@ export function Home(){
                 }
             </div>
 
-            <Footer></Footer>
+            <Footer/>
         </div>
     )
 }

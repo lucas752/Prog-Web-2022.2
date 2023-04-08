@@ -48,7 +48,7 @@ export function SingUpArea(){
     
 
     return(
-        <div className="flex justify-center items-center  ">
+        <div className="flex justify-center items-center  my-[20px] ">
                 <div className="flex flex-col items-center justify-center bg-[#1C3C78] max-w-max p-[40px]  rounded-[12px] text-[#fff] shadow-2xl shadow-indigo-500/40">
 
                     <div className="max-w-max">

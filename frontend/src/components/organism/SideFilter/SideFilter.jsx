@@ -8,7 +8,6 @@ export function SideFilter(){
                     <Input type="radio" name="filter" value="all"/> 
                     <p className="ml-[5px]">Todos</p>
                 </div>
-                
             </div>
         </div>
     )

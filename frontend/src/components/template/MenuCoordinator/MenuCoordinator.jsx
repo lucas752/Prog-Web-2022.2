@@ -4,7 +4,7 @@ export function MenuCoordinator() {
     
     const options = [
         {'text' : 'INICIO', 'link' : '/home'},
-        {'text' : 'MEUS EDITAIS', 'link' : '/carandiru'},
+        {'text' : 'MEUS EDITAIS', 'link' : '/add-notices'},
     ]
 
     return (

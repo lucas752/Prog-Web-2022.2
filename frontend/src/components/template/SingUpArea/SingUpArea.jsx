@@ -29,6 +29,8 @@ export function SingUpArea(){
         
     }
 
+    const [userSelected, setUserSelected] = useState("");
+
     function formTest(){ // falta instanciar, mas está funcionando 
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         setEmailValidad(regex.test(email))
@@ -79,25 +81,28 @@ export function SingUpArea(){
                         <div className="mt-[20px] mb-[20px]">
                             <p className="my-[4px] text-sm">Tipode de usuario</p>
                             <form className="text-[#000]">
-                                <select name="tipoUsuario" required="required">
+                                <select name="tipoUsuario" required="required" onChange={ev => setUserSelected(ev.target.value)}>
                                 <option value="">Tipo de usuario</option>
                                 <option value="usuarioGeral">Usuario geral</option>
                                     <option value="Coordenador">Coordenador</option>
                                 </select>
                             </form>
                         </div>
-
-                        <div className="mt-[20px] mb-[50px]">
-                            <p className="my-[4px] text-sm">Tipo de coordenador</p>
-                            <form className="text-[#000] ">
-                                <select name="tipoCoordenador" required="required">
-                                <option value="">Tipo de coordenador</option>
-                                    <option value="coordenadorPesquisa">Coordenador de pesquisa</option>    
-                                    <option value="coordenadorExtensao">Coordenador de extensão</option>
-                                    <option value="CoordenadorInovacao">Coordenador de inovação</option>
-                                </select>
-                            </form>
-                        </div>
+                        
+                        {userSelected == 'Coordenador' ? 
+                            <div className="mt-[20px] mb-[50px]">
+                                <p className="my-[4px] text-sm">Tipo de coordenador</p>
+                                <form className="text-[#000] ">
+                                    <select name="tipoCoordenador" required="required">
+                                    <option value="">Tipo de coordenador</option>
+                                        <option value="coordenadorPesquisa">Coordenador de pesquisa</option>    
+                                        <option value="coordenadorExtensao">Coordenador de extensão</option>
+                                        <option value="CoordenadorInovacao">Coordenador de inovação</option>
+                                    </select>
+                                </form>
+                            </div>
+                            : <div className="mb-[50px]"></div>
+                        }
                     </div>
 
                     <div className="">

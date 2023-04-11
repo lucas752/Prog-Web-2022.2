@@ -2,6 +2,9 @@ import { Footer } from "../../components/organism/Footer/Footer";
 import { Header } from "../../components/organism/Header/Header";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
 import { SideFilter } from "../../components/organism/SideFilter/SideFilter";
+import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuCoordinator"
+import { MenuUser } from "../../components/template/MenuUser/MenuUser"
+
 
 export function Home(){
     const card = [
@@ -32,9 +35,16 @@ export function Home(){
         },
     ]
 
+    const user = 'coordenador'
+
     return(
         <div className="flex flex-col justify-between h-screen">
-            <Header/>
+            <div>
+                <Header/>
+                { 
+                    user == 'coordenador' ? <MenuCoordinator/> : <MenuUser/>
+                }
+            </div>
             <span>Página inicial usuário geral</span>
             <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
                 <div className="grid grid-cols-12 gap-4 ">

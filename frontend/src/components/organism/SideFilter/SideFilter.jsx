@@ -8,6 +8,18 @@ export function SideFilter(){
                     <Input type="radio" name="filter" value="all"/> 
                     <p className="ml-[5px]">Todos</p>
                 </div>
+                <div className="flex flex row">
+                    <Input type="radio" name="filter" value="all"/> 
+                    <p className="ml-[5px]">Extensão</p>
+                </div>
+                <div className="flex flex row">
+                    <Input type="radio" name="filter" value="all"/> 
+                    <p className="ml-[5px]">Pesquisa</p>
+                </div>
+                <div className="flex flex row">
+                    <Input type="radio" name="filter" value="all"/> 
+                    <p className="ml-[5px]">Inovação</p>
+                </div>
             </div>
         </div>
     )

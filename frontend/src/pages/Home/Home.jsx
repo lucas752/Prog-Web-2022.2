@@ -1,6 +1,7 @@
 import { Footer } from "../../components/organism/Footer/Footer";
 import { Header } from "../../components/organism/Header/Header";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
+import { SideFilter } from "../../components/organism/SideFilter/SideFilter";
 
 export function Home(){
     const card = [
@@ -48,6 +49,7 @@ export function Home(){
                 ) : <div> <p>Recarregue a página</p> </div>
                 }
             </div>
+            <SideFilter/>
 
             <Footer/>
         </div>

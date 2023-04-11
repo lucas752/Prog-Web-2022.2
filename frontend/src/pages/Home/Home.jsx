@@ -36,20 +36,22 @@ export function Home(){
         <div className="flex flex-col justify-between h-screen">
             <Header/>
             <span>Página inicial usuário geral</span>
-            <div className="grid grid-cols-12  gap-10 flex flex-wrap justify-evenly">
-                { card?.length ? card.map((data, index) =>
-                    <NoticeCard 
-                        term={data.term} 
-                        domain={data.domain} 
-                        requirements={data.requirements} 
-                        title={data.title} 
-                        description={data.description} 
-                        criteria={data.criteria} 
-                    />
-                ) : <div> <p>Recarregue a página</p> </div>
-                }
+            <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
+                <div className="grid grid-cols-12 gap-4 ">
+                    { card?.length ? card.map((data, index) =>
+                        <NoticeCard 
+                            term={data.term} 
+                            domain={data.domain} 
+                            requirements={data.requirements} 
+                            title={data.title} 
+                            description={data.description} 
+                            criteria={data.criteria} 
+                        />
+                    ) : <div> <p>Recarregue a página</p> </div>
+                    }
+                </div>
+                <SideFilter/>
             </div>
-            <SideFilter/>
 
             <Footer/>
         </div>

@@ -81,7 +81,7 @@ export function SingUpArea(){
                         <div className="mt-[20px] mb-[20px]">
                             <p className="my-[4px] text-sm">Tipode de usuario</p>
                             <form className="text-[#000]">
-                                <select name="tipoUsuario" required="required" onChange={ev => setUserSelected(ev.target.value)}>
+                                <select className="rounded-[12px] p-[5px]" name="tipoUsuario" required="required" onChange={ev => setUserSelected(ev.target.value)}>
                                 <option value="">Tipo de usuario</option>
                                 <option value="usuarioGeral">Usuario geral</option>
                                     <option value="Coordenador">Coordenador</option>
@@ -93,7 +93,7 @@ export function SingUpArea(){
                             <div className="mt-[20px] mb-[50px]">
                                 <p className="my-[4px] text-sm">Tipo de coordenador</p>
                                 <form className="text-[#000] ">
-                                    <select name="tipoCoordenador" required="required">
+                                    <select name="tipoCoordenador" required="required" className="rounded-[12px] p-[5px]">
                                     <option value="">Tipo de coordenador</option>
                                         <option value="coordenadorPesquisa">Coordenador de pesquisa</option>    
                                         <option value="coordenadorExtensao">Coordenador de extensão</option>

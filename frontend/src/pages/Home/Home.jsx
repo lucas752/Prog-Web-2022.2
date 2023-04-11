@@ -34,7 +34,7 @@ export function Home(){
     return(
         <div className="flex flex-col justify-between h-screen">
             <Header/>
-            <span>Página inicial</span>
+            <span>Página inicial usuário geral</span>
             <div className="grid grid-cols-12  gap-10 flex flex-wrap justify-evenly">
                 { card?.length ? card.map((data, index) =>
                     <NoticeCard 

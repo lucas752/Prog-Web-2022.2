@@ -57,8 +57,8 @@ export function CoordinatorNotices(){
                 <span>Olá {userName}</span>
                 <span>{coordinatorType}</span>
             </div>
-            <div>
-                <Button name="Novo Edital"/>
+            <div className="flex flex-row justify-center my-[20px]">
+                <Button style="bg-[#1C3C78] text-[#fff] w-[300px] h-[40px] rounded-[16px] text-[20px] shadow-2xl hover:shadow-none" name="Novo Edital"/>
             </div>
             <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
                 <div className="grid grid-cols-12 gap-4 ">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function Menu({options}) {
     return(
-        <div className="bg-[#EC2026] flex flex-row pl-2.5 pr-2.5 items-center justify-between">
+        <div className="bg-[#EC2026] flex flex-row pl-[1.9rem] pr-8 items-center justify-between">
             <div>
                 {options.map ((option) => <Link to={option.link} className="text-[#FFF] mr-2 font-bold align-middle hover:text-[#d9d9d9]">{option.text}</Link>)}
             </div>

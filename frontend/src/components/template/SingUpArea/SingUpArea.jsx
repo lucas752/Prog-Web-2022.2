@@ -79,7 +79,7 @@ export function SingUpArea(){
                         </div>
                         
                         <div className="mt-[20px] mb-[20px]">
-                            <p className="my-[4px] text-sm">Tipode de usuario</p>
+                            <p className="my-[4px] text-sm">Tipo de usuário</p>
                             <form className="text-[#000]">
                                 <select className="rounded-[12px] p-[5px]" name="tipoUsuario" required="required" onChange={ev => setUserSelected(ev.target.value)}>
                                 <option value="">Tipo de usuario</option>

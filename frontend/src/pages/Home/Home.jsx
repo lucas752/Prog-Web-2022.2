@@ -33,6 +33,15 @@ export function Home(){
             'term' : '24/04/2023',
             'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
         },
+
+        {
+            'title': 'EDITAL XXXX4',
+            'domain': 'Pesquisa',
+            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
+            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
+            'term' : '24/04/2023',
+            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
+        },
     ]
 
     const user = 'coordenador'

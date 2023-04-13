@@ -3,6 +3,7 @@ import { Header } from "../../components/organism/Header/Header";
 import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuCoordinator";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
 import { Button } from "../../components/atomic/Button/Button";
+import { Link } from "react-router-dom";
 
 
 export function CoordinatorNotices(){
@@ -58,7 +59,9 @@ export function CoordinatorNotices(){
                 <span>{coordinatorType}</span>
             </div>
             <div className="flex flex-row justify-center my-[20px]">
-                <Button style="bg-[#1C3C78] text-[#fff] w-[300px] h-[40px] rounded-[16px] text-[20px] shadow-2xl hover:shadow-none" name="Novo Edital"/>
+                <Link to="/add-notices">
+                    <Button style="bg-[#1C3C78] text-[#fff] w-[150px] tablet:w-[200px] desktop:w-[300px] tablet:h-[34px] desktop:h-[40px] rounded-[16px] text-[20px] shadow-2xl hover:shadow-none" name="Novo Edital"/>
+                </Link>
             </div>
             <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
                 <div className="grid grid-cols-12 gap-4 ">

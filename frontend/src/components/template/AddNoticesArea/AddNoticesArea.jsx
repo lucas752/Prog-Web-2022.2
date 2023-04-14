@@ -36,7 +36,7 @@ export function AddNoticesArea() {
     }
     
     return(
-        <div className="bg-[#f0f0f0] flex flex-col rounded-xl w-[26rem] items-center justify-center my-10 py-10 px-10 max-w-max shadow-xl">
+        <div className="bg-[#f0f0f0] flex flex-col rounded-xl w-[26rem] items-center justify-center my-10 py-10 px-[1.5rem] max-w-max shadow-xl">
             <div>
                 <div className="mb-[20px]">
                     <p className="my-[4px] text-sm">Título</p>

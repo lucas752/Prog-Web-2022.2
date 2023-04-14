@@ -1,5 +1,6 @@
 import { Footer } from "../../components/organism/Footer/Footer";
 import { Header } from "../../components/organism/Header/Header";
+import { NameAndType } from "../../components/atomic/NameAndType/NameAndType";
 import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuCoordinator";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
 import { Button } from "../../components/atomic/Button/Button";
@@ -54,10 +55,7 @@ export function CoordinatorNotices(){
                 <Header/>
                 <MenuCoordinator/>
             </div>
-            <div className="mx-[42px] flex flex-row justify-between font-bold my-6 text-[16px]">
-                <span>Olá {userName}</span>
-                <span>{coordinatorType}</span>
-            </div>
+            <NameAndType coordinatorType={coordinatorType} userName={userName}/>
             <div className="flex flex-row justify-center my-[20px]">
                 <Link to="/add-notices">
                     <Button style="bg-[#1C3C78] text-[#fff] w-[150px] tablet:w-[200px] desktop:w-[300px] tablet:h-[34px] desktop:h-[40px] rounded-[16px] text-[20px] shadow-2xl hover:shadow-none" name="Novo Edital"/>

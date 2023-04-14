@@ -62,7 +62,7 @@ export function LoginArea(){
                     </div>
 
                     <div className="mt-[20px]">
-                        <p className="text-sm ">Não possui conta? <Link to="/singup" className="text-[#EC2026]"> Cadastrar</Link> </p>
+                        <p className="text-sm ">Não possui conta? <Link to="/signup" className="text-[#EC2026]"> Cadastrar</Link> </p>
                     </div>
 
                 </div>

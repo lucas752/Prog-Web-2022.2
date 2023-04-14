@@ -5,7 +5,7 @@ import logoWhite from "../../../assets/image 5 1.png"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export function SingUpArea(){
+export function SignUpArea(){
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

@@ -48,6 +48,7 @@ export function CoordinatorNotices(){
 
     const coordinatorType = 'Coordenador de extensão'
     const userName = 'Jamuelton'
+    const but = true
 
     return(
         <div className="flex flex-col justify-between h-screen">
@@ -70,7 +71,8 @@ export function CoordinatorNotices(){
                             requirements={data.requirements} 
                             title={data.title} 
                             description={data.description} 
-                            criteria={data.criteria} 
+                            criteria={data.criteria}
+                            showBut={but} 
                         />
                     ) : <div> <p>Recarregue a página</p> </div>
                     }

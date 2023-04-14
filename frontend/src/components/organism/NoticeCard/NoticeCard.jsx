@@ -24,8 +24,8 @@ export function NoticeCard({term, domain, requirements, title, description, crit
             </div>
             {res && (
                 <div className="flex flex-row justify-around my-[20px]">
-                    <Button style="bg-[#1C3C78] text-[#fff] w-[100px] rounded-[12px] p-[2px] shadow-l shadow-blue-950 hover:shadow-none" name="Editar"/>
-                    <Button style="bg-[#EC2026] text-[#fff] w-[100px] rounded-[12px] p-[2px] shadow-l shadow-red-950 hover:shadow-none" name="Excluir"/>
+                    <Button style="bg-[#1C3C78] text-[#fff] w-[100px] rounded-[12px] p-[2px] font-bold duration-500 hover:bg-[#fff] hover:text-[#1C3C78] " name="Editar"/>
+                    <Button style="bg-[#EC2026] text-[#fff] w-[100px] rounded-[12px] p-[2px] font-bold duration-500 hover:bg-[#fff] hover:text-[#EC2026] " name="Excluir"/>
                 </div>
             )}
             <span></span>

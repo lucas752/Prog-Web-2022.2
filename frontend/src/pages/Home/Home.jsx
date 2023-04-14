@@ -1,5 +1,6 @@
 import { Footer } from "../../components/organism/Footer/Footer";
 import { Header } from "../../components/organism/Header/Header";
+import { NameAndType } from "../../components/atomic/NameAndType/NameAndType";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
 import { SideFilter } from "../../components/organism/SideFilter/SideFilter";
 import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuCoordinator"
@@ -56,10 +57,7 @@ export function Home(){
                     typeUser == 'coordenador' ? <MenuCoordinator/> : <MenuUser/>
                 }
             </div>
-            <div className="mx-[42px] flex flex-row justify-between font-bold my-6 text-[16px]">
-                <span>Olá {userName}</span>
-                <span>{coordinatorType}</span>
-            </div>
+            <NameAndType coordinatorType={coordinatorType} userName={userName}/>
             <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
                 <div className="grid grid-cols-12 gap-4 ">
                     { card?.length ? card.map((data, index) =>

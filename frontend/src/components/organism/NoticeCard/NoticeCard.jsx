@@ -1,3 +1,5 @@
+import { Button } from "../../atomic/Button/Button";
+
 export function NoticeCard({term, domain, requirements, title, description, criteria}) {
     return(
         <div className="col-span-12 tablet:col-span-6  desktop:col-span-4  bg-[#F0F0F0] rounded-xl  max-w-max max-h-max px-4 py-6 shadow-xl  mx-[15px] tablet:mx-[20px] desktop:mx-[30px]">
@@ -18,6 +20,10 @@ export function NoticeCard({term, domain, requirements, title, description, crit
             <div className="text-base mb-2">
                 <span className="font-semibold">REQUISITOS: </span>
                 <span>{criteria}</span>
+            </div>
+            <div className="flex flex-row justify-around mt-[20px]">
+                <Button style="bg-[#1C3C78] text-[#fff] w-[100px] rounded-[12px] p-[2px]" name="Editar"/>
+                <Button style="bg-[#EC2026] text-[#fff] w-[100px] rounded-[12px] p-[2px]" name="Excluir"/>
             </div>
             <span></span>
         </div>

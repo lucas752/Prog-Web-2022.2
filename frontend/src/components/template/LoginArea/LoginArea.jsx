@@ -35,10 +35,10 @@ export function LoginArea(){
     
 
     return(
-        <div className="flex justify-center items-center  ">
+        <div className="flex justify-center items-center my-[20px] ">
                 <div className="flex flex-col items-center justify-center bg-[#1C3C78] max-w-max p-[40px]  rounded-[12px] text-[#fff] shadow-2xl shadow-indigo-500/40">
 
-                    <div className="max-w-max">
+                    <div className="max-w-max rounded-[12px] hover:shadow-2xl">
                     <Logo img={logoWhite} />
                     </div>
 
@@ -62,7 +62,7 @@ export function LoginArea(){
                     </div>
 
                     <div className="mt-[20px]">
-                        <p className="text-sm ">Não possui conta? <Link to="/singup" className="text-[#EC2026]"> Cadastrar</Link> </p>
+                        <p className="text-sm ">Não possui conta? <Link to="/signup" className="text-[#EC2026]"> Cadastrar</Link> </p>
                     </div>
 
                 </div>

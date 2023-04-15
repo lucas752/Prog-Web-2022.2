@@ -7,7 +7,7 @@ export function Footer(){
             <div className="bg-[#1C3C78]  flex flex-row justify-end ">
                 <Logo img={logoWhite} style="mx-[32px] my-[12px]"/>
             </div>
-            <div className="bg-[#EC2026] w-screen h-[10px]">
+            <div className="bg-[#EC2026]  h-[10px]">
                
             </div>
         </div>

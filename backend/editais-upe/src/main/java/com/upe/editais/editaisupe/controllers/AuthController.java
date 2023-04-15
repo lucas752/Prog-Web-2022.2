@@ -1,6 +1,7 @@
 package com.upe.editais.editaisupe.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.upe.editais.editaisupe.models.GeneralUser;
 import com.upe.editais.editaisupe.repositories.IGeneralUserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/auth")
+@RequiredArgsConstructor
+
 public class AuthController {
 
     @Autowired
@@ -19,12 +24,15 @@ public class AuthController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    private final AuthenticationService service;
+
 
     @PostMapping("/register")
     public GeneralUser registerUser(@RequestBody GeneralUser newUser) {
 
         // Verifica se o email ou CPF do usuário já existem no banco de dados
-        GeneralUser existigUser = uRepository.findByEmail(newUser.getEmail());
+        GeneralUser existigUser = uRepository.findByEmail(newUser.getEmail()).orElse(null);
         if (existigUser != null) {
             throw new RuntimeException("Email já cadastrado");
         }
@@ -48,5 +56,9 @@ public class AuthController {
         return uRepository.save(newUser);
     }
     
-    
+    @PostMapping("/authenticate")
+	public ResponseEntity<AuthenticationResponse> authenticate( @RequestBody AuthenticationRequest request){
+		return ResponseEntity.ok(service.authentication(request));
+	}
+ 
 }

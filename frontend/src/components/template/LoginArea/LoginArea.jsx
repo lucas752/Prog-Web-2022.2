@@ -2,10 +2,12 @@ import { Button } from "../../atomic/Button/Button";
 import { Input } from "../../atomic/Input/Input";
 import { Logo } from "../../atomic/Logo/Logo";
 import logoWhite from "../../../assets/image 5 1.png"
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios';
 
 export function LoginArea(){
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassaword] = useState("")
@@ -32,7 +34,21 @@ export function LoginArea(){
         }
     }
 
-    
+    const data = {
+        email: email,
+        password: password
+    }
+
+    const login = async (ev) => {
+        try {
+            const response = await axios.post("http://localhost:8080/auth/authenticate", data)
+            const token = { token: response?.data?.token }
+            localStorage.setItem("editaisupe", JSON.stringify(token));
+            navigate("/home")
+        } catch (e) {
+            alert("Credenciais inválidas")
+        }
+    }
 
     return(
         <div className="flex justify-center items-center my-[20px] ">
@@ -58,7 +74,7 @@ export function LoginArea(){
                     </div>
 
                     <div className="">
-                        <Button name="Login" func={formTest} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
+                        <Button name="Login" func={login} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
                     </div>
 
                     <div className="mt-[20px]">

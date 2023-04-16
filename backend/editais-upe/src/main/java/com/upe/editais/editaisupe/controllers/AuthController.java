@@ -3,6 +3,7 @@ package com.upe.editais.editaisupe.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(path = "/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 
 public class AuthController {
 
@@ -47,7 +49,13 @@ public class AuthController {
 
         // Verifica se o usuário é um coordenador e define suas permissões de acordo
         if(newUser.getPermission().equals("COORDENADOR")) {
-            newUser.setPermission("COORDENADOR");
+            if(newUser.getCoordinatorType().equals("Pesquisa")) {
+                newUser.setPermission("COORDENADOR_Pesquisa");
+            } else if(newUser.getCoordinatorType().equals("Extensão")) {
+                newUser.setPermission("COORDENADOR_Extensão ");
+            } else if(newUser.getCoordinatorType().equals("Inovação")) {
+                newUser.setPermission("COORDENADOR_Inovação");
+            }
         } else {
             newUser.setPermission("USUÁRIO");
         }

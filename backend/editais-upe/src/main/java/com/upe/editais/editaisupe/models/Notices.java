@@ -27,8 +27,8 @@ public class Notices {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(nullable = false, columnDefinition = "DATE")
-	private LocalDate term;
+	@Column(nullable = false, columnDefinition = "TEXT")
+	private String term;
 	
 	@Column(nullable = false)
 	private String domain;
@@ -39,7 +39,7 @@ public class Notices {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String criteria;
 	
-	public Notices(String title, String description, LocalDate term, String domain, String requirements, String criteria) {
+	public Notices(String title, String description, String term, String domain, String requirements, String criteria) {
 		this.title = title;
 		this.description = description;
 		this.term = term;
@@ -68,11 +68,11 @@ public class Notices {
 		this.description = description;
 	}
 
-	public LocalDate getTerm() {
+	public String getTerm() {
 		return term;
 	}
 
-	public void setTerm(LocalDate term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 

@@ -3,6 +3,7 @@ package com.upe.editais.editaisupe.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.upe.editais.editaisupe.models.Notices;
 import com.upe.editais.editaisupe.repositories.INoticesRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/notices")
+@RequestMapping(path = "/notices")
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class NoticesController {
 	
 	@Autowired

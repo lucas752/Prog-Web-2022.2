@@ -1,14 +1,64 @@
 import { Button } from "../../atomic/Button/Button";
 import { Input } from "../../atomic/Input/Input";
 import { LongInput } from '../../atomic/LongInput/LongInput'
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import jwt from 'jwt-decode';
+import { useNavigate } from "react-router-dom";
 
 export function AddNoticesArea() {
+    const data = JSON.parse(localStorage.getItem("editaisupe"));
+    const decode = jwt(data.token);
+    const email = decode.sub;
+    const navigate = useNavigate();
+
+    const getUser = async() => {
+        try {
+            const user = await axios.get(`http://localhost:8080/users/email/${email}`, {
+                headers: {
+                    Authorization: `Bearer ${data.token}`,
+                }
+            });
+            setUser(user.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("")
     const [term, setTerm] = useState("")
     const [criteria, setCriteria] = useState("")
     const [requirements, setRequirements] = useState("")
+
+    const [user, setUser] = useState({});
+
+    const dataNotices = {
+        title: title,
+        description: description,
+        term: term,
+        domain: user.coordinatorType,
+        requirements: requirements,
+        criteria: criteria
+    }
+
+    const save = async (ev) => {
+        try {
+          await axios.post("http://localhost:8080/notices", dataNotices, {
+            headers: {
+                Authorization: `Bearer ${data.token}`,
+            }
+        })
+          alert("Edital Cadastrado com sucesso")
+          navigate("/home")
+        } catch(e) {
+          console.log(e)
+        }
+      }
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value)
@@ -61,7 +111,7 @@ export function AddNoticesArea() {
             </div>
 
             <div>
-                <Button name="Salvar" style="text-[#fff] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#1C3C78] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
+                <Button name="Salvar" style="text-[#fff] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#1C3C78] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner" func={save}/>
             </div>
         </div>
     )

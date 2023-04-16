@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -32,7 +34,8 @@ public class SecurityConfiguration {
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authenticationProvider(authenticationProvider)
-			.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+			.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+			.cors();
 		return http.build();
 	}
 }

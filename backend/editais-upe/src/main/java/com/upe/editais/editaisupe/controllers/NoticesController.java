@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.upe.editais.editaisupe.models.Notices;
 import com.upe.editais.editaisupe.repositories.INoticesRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/notices")
+@RequestMapping(path = "/notices")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
+
 public class NoticesController {
 	
 	@Autowired

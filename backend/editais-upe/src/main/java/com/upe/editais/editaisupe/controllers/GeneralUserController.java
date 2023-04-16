@@ -17,7 +17,7 @@ import com.upe.editais.editaisupe.repositories.IGeneralUserRepository;
 
 @RestController
 @RequestMapping(path = "/users")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class GeneralUserController {
 	@Autowired
 	private IGeneralUserRepository uRepository;
@@ -30,6 +30,11 @@ public class GeneralUserController {
 	@GetMapping("/{id}")
 	public Optional<GeneralUser> getUserById(@PathVariable("id") Long id) {
 		return uRepository.findById(id);
+	}
+	
+	@GetMapping("/email/{email}")
+	public Optional<GeneralUser> getUserByEmail(@PathVariable("email") String email) {
+		return uRepository.findByEmail(email);
 	}
 
 	@DeleteMapping("/{id}")

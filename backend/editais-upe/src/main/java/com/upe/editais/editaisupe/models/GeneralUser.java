@@ -3,19 +3,14 @@ package com.upe.editais.editaisupe.models;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -53,9 +48,9 @@ public class GeneralUser implements UserDetails {
 	@Column(name = "is_coordinator", nullable = false)
 	private boolean isCoordinator;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "generalUser")
-	@JsonIgnore
-	private List<Notices> notices;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "generalUser")
+//	@JsonIgnore
+//	private List<Notices> notices;
 
 	public GeneralUser() {
 	}
@@ -116,13 +111,10 @@ public class GeneralUser implements UserDetails {
 		this.password = password;
 	}
 
-	public List<Notices> getNotices() {
-		return notices;
-	}
+//	public List<Notices> getNotices() {
+//		return notices;
+//	}
 
-	public void setNotices(List<Notices> notices) {
-		this.notices = notices;
-	}
 
 	public String getPermission() {
 		return permission;

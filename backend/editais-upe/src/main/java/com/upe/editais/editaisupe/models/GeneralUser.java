@@ -35,17 +35,25 @@ public class GeneralUser implements UserDetails{
 
 	@Column(name = "permission", nullable = false)
 	private String permission;
+	
+	@Column(name = "coordinator_type", nullable = true)
+    private String coordinatorType;
+
+    @Column(name = "is_coordinator", nullable = false)
+    private boolean isCoordinator;
 
 	public GeneralUser() {
 	}
 
-	public GeneralUser(String name, String cpf, String email, String password, String permission) {
-		this.name = name;
-		this.cpf = cpf;
-		this.email = email;
-		this.password = password;
-		this.permission = permission;
-	}
+	public GeneralUser(String name, String cpf, String email, String password, String permission, boolean isCoordinator) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.password = password;
+        this.permission = permission;
+        this.isCoordinator = isCoordinator;
+
+    }
 
 	public Long getId() {
 		return id;
@@ -94,6 +102,27 @@ public class GeneralUser implements UserDetails{
 	public void setPermission(String permission) {
 		this.permission = permission;
 	}
+	
+	public String getCoordinatorType() {
+        return coordinatorType;
+    }
+
+
+    public boolean isCoordinator() {
+        return isCoordinator;
+    }
+
+    public void setCoordinatorType(String coordinatorType) {
+        if (this.permission.equals("COORDENADOR")) {
+            this.coordinatorType = coordinatorType;
+        } else {
+            throw new IllegalStateException("Only coordinators can have a coordinator type.");
+        }
+    }
+
+    public void setIsCoordinator(boolean isCoordinator) {
+        this.isCoordinator = isCoordinator;
+    }
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

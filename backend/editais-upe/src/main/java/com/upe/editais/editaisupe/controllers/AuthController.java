@@ -45,9 +45,15 @@ public class AuthController {
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);
 
-        // Verifica se o usuário é um coordenador e define suas permissões de acordo
+     // Verifica se o usuário é um coordenador e define suas permissões de acordo
         if(newUser.getPermission().equals("COORDENADOR")) {
-            newUser.setPermission("COORDENADOR");
+            if(newUser.getCoordinatorType().equals("Pesquisa")) {
+                newUser.setPermission("COORDENADOR_Pesquisa");
+            } else if(newUser.getCoordinatorType().equals("Extensão")) {
+                newUser.setPermission("COORDENADOR_Extensão ");
+            } else if(newUser.getCoordinatorType().equals("Inovação")) {
+                newUser.setPermission("COORDENADOR_Inovação");
+            }
         } else {
             newUser.setPermission("USUÁRIO");
         }

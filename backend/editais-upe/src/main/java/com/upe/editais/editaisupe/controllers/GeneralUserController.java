@@ -16,8 +16,9 @@ import com.upe.editais.editaisupe.models.GeneralUser;
 import com.upe.editais.editaisupe.repositories.IGeneralUserRepository;
 
 @RestController
-@RequestMapping(path = "/users")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/users")
+@CrossOrigin(origins = "*")
+
 public class GeneralUserController {
 	@Autowired
 	private IGeneralUserRepository uRepository;

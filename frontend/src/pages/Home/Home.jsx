@@ -50,6 +50,7 @@ export function Home(){
 
     const data = JSON.parse(localStorage.getItem("editaisupe"));
     const decode = jwt(data.token);
+    const email = decode.sub;
 
     const getCards = async() => {
         try {
@@ -64,26 +65,43 @@ export function Home(){
         }
     }
 
+    const getUser = async() => {
+        try {
+            const user = await axios.get(`http://localhost:8080/users/email/${email}`, {
+                headers: {
+                    Authorization: `Bearer ${data.token}`,
+                }
+            });
+            setUser(user.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
     const [card, setCard] = useState({});
+    const [user, setUser] = useState({});
 
     const typeUser = 'coordenador'
-    const coordinatorType = 'Coordenador de extensão'
+    const userType = user.permission == 'COORDENADOR' ? user.permission + ' DE ' + user.coordinatorType : user.permission + " GERAL"
     const userName = 'Jamuelton'
 
     useEffect(() => {
         getCards();
-        console.log(card)
+        getUser();
     }, []);
 
     return(
         <div className="flex flex-col justify-between h-screen">
+            {console.log(user)}
             <div>
                 <Header/>
                 { 
-                    typeUser == 'coordenador' ? <MenuCoordinator/> : <MenuUser/>
+                    user.permission == 'COORDENADOR' ? <MenuCoordinator/> : <MenuUser/>
                 }
             </div>
-            <NameAndType coordinatorType={coordinatorType} userName={userName}/>
+            <NameAndType coordinatorType={userType} userName={user.name}/>
             <div className="flex flex-col-reverse tablet:flex-row desktop:flex-row m-[10px] ">
                 <div className="grid grid-cols-12 gap-4 ">
                     { card?.length ? card.map((data, index) =>

@@ -4,11 +4,13 @@ import { LongInput } from '../../atomic/LongInput/LongInput'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwt from 'jwt-decode';
+import { useNavigate } from "react-router-dom";
 
 export function AddNoticesArea() {
     const data = JSON.parse(localStorage.getItem("editaisupe"));
     const decode = jwt(data.token);
     const email = decode.sub;
+    const navigate = useNavigate();
 
     const getUser = async() => {
         try {
@@ -48,6 +50,7 @@ export function AddNoticesArea() {
             }
         })
           alert("Edital Cadastrado com sucesso")
+          navigate("/home")
         } catch(e) {
           console.log(e)
         }

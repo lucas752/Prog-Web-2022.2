@@ -2,55 +2,21 @@ import { Footer } from "../../components/organism/Footer/Footer";
 import { Header } from "../../components/organism/Header/Header";
 import { NameAndType } from "../../components/atomic/NameAndType/NameAndType";
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
-import { SideFilter } from "../../components/organism/SideFilter/SideFilter";
 import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuCoordinator"
 import { MenuUser } from "../../components/template/MenuUser/MenuUser"
 import jwt from 'jwt-decode';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Button } from '../../components/atomic/Button/Button'
 
 
 export function Home(){
-    /*const card = [
-        {
-            'title': 'EDITAL XXXX1',
-            'domain': 'Extensão',
-            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
-            'term' : '24/04/2023',
-            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
-        },
-        {
-            'title': 'EDITAL XXXX2',
-            'domain': 'Pesquisa',
-            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
-            'term' : '24/04/2023',
-            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
-        },
-
-        {
-            'title': 'EDITAL XXXX3',
-            'domain': 'Pesquisa',
-            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
-            'term' : '24/04/2023',
-            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
-        },
-
-        {
-            'title': 'EDITAL XXXX4',
-            'domain': 'Pesquisa',
-            'requirements': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.',
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur felis justo, vitae sagittis nulla maximus eu. Ut ultrices sit.',
-            'term' : '24/04/2023',
-            'criteria': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac.'
-        },
-    ] */
 
     const data = JSON.parse(localStorage.getItem("editaisupe"));
     const decode = jwt(data.token);
     const email = decode.sub;
+
+    const [domain, setDomain] = useState("all");
 
     const getCards = async() => {
         try {
@@ -78,18 +44,35 @@ export function Home(){
         }
     }
 
+    const getByDomain = async() => {
+        try {
+            const card = await axios.get(`http://localhost:8080/notices/domain/${encodeURI(domain)}`, {
+                headers: {
+                    Authorization: `Bearer ${data.token}`,
+                }
+            });
+            setCard(card.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+    const handleFilter = () => {
+        if (domain == "all") {
+            getCards();
+        } else {
+            getByDomain();
+        }
+    }
 
     const [card, setCard] = useState({});
     const [user, setUser] = useState({});
 
-    const typeUser = 'coordenador'
     const userType = user.permission == 'COORDENADOR' ? user.permission + ' DE ' + user.coordinatorType : user.permission + " GERAL"
-    const userName = 'Jamuelton'
 
     useEffect(() => {
-        getCards();
         getUser();
+        getCards();
     }, []);
 
     return(
@@ -116,7 +99,20 @@ export function Home(){
                     ) : <div> <p>Recarregue a página</p> </div>
                     }
                 </div>
-                <SideFilter/>
+                <div className="bg-[#F0F0F0] rounded-xl max-w-max  tablet:max-w-max desktop:max-w-max px-4 py-6 shadow-xl  mx-[15px] tablet:mx-[30px] desktop:mx-[30px] my-[15px] tablet:my-[0px] desktop:my-[0px]">
+            <p>Áreas</p>
+            <div className="flex flex-col items-center">
+                <select name="" value={domain} onChange={ev => setDomain(ev.target.value)}>
+                    <option value="all">Todos</option>
+                    <option value="EXTENSÃO">Extensão</option>
+                    <option value="PESQUISA">Pesquisa</option>
+                    <option value="INOVAÇÃO">Inovação</option>
+                </select>
+                <div className="mt-[20px]">
+                    <Button func={handleFilter} name="Filtrar" style="text-[#fff] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40 bg-[#1c3c78] duration-500 hover:bg-[#fff] hover:text-[#1c3c78] hover:shadow-inner"/>
+                </div>
+            </div>
+        </div>
             </div>
 
             <Footer/>

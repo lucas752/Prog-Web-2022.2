@@ -3,6 +3,7 @@ package com.upe.editais.editaisupe.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,9 @@ import com.upe.editais.editaisupe.models.GeneralUser;
 import com.upe.editais.editaisupe.repositories.IGeneralUserRepository;
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping("/users")
+@CrossOrigin(origins = "*")
+
 public class GeneralUserController {
 	@Autowired
 	private IGeneralUserRepository uRepository;
@@ -28,6 +31,11 @@ public class GeneralUserController {
 	@GetMapping("/{id}")
 	public Optional<GeneralUser> getUserById(@PathVariable("id") Long id) {
 		return uRepository.findById(id);
+	}
+	
+	@GetMapping("/email/{email}")
+	public Optional<GeneralUser> getUserByEmail(@PathVariable("email") String email) {
+		return uRepository.findByEmail(email);
 	}
 
 	@DeleteMapping("/{id}")

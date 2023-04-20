@@ -1,7 +1,5 @@
 package com.upe.editais.editaisupe.models;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +25,8 @@ public class Notices {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(nullable = false, columnDefinition = "DATE")
-	private LocalDate term;
+	@Column(nullable = false, columnDefinition = "TEXT")
+	private String term;
 	
 	@Column(nullable = false)
 	private String domain;
@@ -39,13 +37,26 @@ public class Notices {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String criteria;
 	
-	public Notices(String title, String description, LocalDate term, String domain, String requirements, String criteria) {
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "generalUser")
+//	private GeneralUser generalUser;
+	
+	public Notices(
+			String title,
+			String description,
+			String term,
+			String domain,
+			String requirements,
+			String criteria
+//			GeneralUser generalUser
+			) {
 		this.title = title;
 		this.description = description;
 		this.term = term;
 		this.domain = domain;
 		this.requirements = requirements;
 		this.criteria = criteria;
+//		this.generalUser = generalUser;
 	}
 	
 	public Long getId() {
@@ -68,11 +79,11 @@ public class Notices {
 		this.description = description;
 	}
 
-	public LocalDate getTerm() {
+	public String getTerm() {
 		return term;
 	}
 
-	public void setTerm(LocalDate term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 
@@ -99,4 +110,12 @@ public class Notices {
 	public void setCriteria(String criteria) {
 		this.criteria = criteria;
 	}
+	
+//	public GeneralUser getGeneralUser() {
+//		return generalUser;
+//	}
+//	
+//	public void getGeneralUser(GeneralUser generalUser) {
+//		this.generalUser = generalUser;
+//	}
 }

@@ -2,14 +2,19 @@ import { Button } from "../../atomic/Button/Button";
 import { Input } from "../../atomic/Input/Input";
 import { Logo } from "../../atomic/Logo/Logo";
 import logoWhite from "../../../assets/image 5 1.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios';
 
 export function SignUpArea(){
+    const navigate = useNavigate();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassaword] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [permission, setPermission] = useState("USUARIO")
+    const [coordinatorType, setCoordinatorType] = useState("")
 
     const [nameValidad, setNameValidad] = useState()
     const [emailValidad, setEmailValidad] = useState()
@@ -28,8 +33,10 @@ export function SignUpArea(){
         setPassaword(e.target.value)
         
     }
-
-    const [userSelected, setUserSelected] = useState("");
+    const handleCpfChange = (e) => {
+        setCpf(e.target.value)
+        
+    }
 
     function formTest(){ // falta instanciar, mas está funcionando 
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -44,6 +51,36 @@ export function SignUpArea(){
             setNameValidad(false);
         }else{
             setNameValidad(true);
+        }
+    }
+
+    const dataCoordinator = {
+        name: name,
+        cpf: cpf,
+        email: email,
+        password : password,
+        permission: permission,
+        coordinatorType: coordinatorType,
+        isCoordinator: true
+    }
+
+    const dataUser = {
+        name: name,
+        cpf: cpf,
+        email: email,
+        password : password,
+        permission: permission,
+        isCoordinator: false
+    }
+
+    const save = async (ev) => {
+        console.log(dataUser)
+        try {
+            permission == "COORDENADOR" ? await axios.post("http://localhost:8080/auth/register", dataCoordinator) : await axios.post("http://localhost:8080/auth/register", dataUser)
+            alert("Conta criada com sucesso, realize o login")
+            navigate("/")
+        } catch (error) {
+            alert(error)
         }
     }
 
@@ -71,6 +108,14 @@ export function SignUpArea(){
                             {!emailValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione um email válido</p>} 
                     
                         </div>
+
+                        <div className="mt-[20px] mb-[20px]">
+                            <p className="my-[4px] text-sm">CPF</p>
+                            <Input type="text" place="Digite seu cpf:" func={handleCpfChange} />
+                            {!emailValidad &&  <p className="text-[#EC2026] text-[10px] m-[5px]">Adicione um CPF válido</p>} 
+                    
+                        </div>
+
                         <div className="mt-[20px] mb-[20px]">
                             <p className="my-[4px] text-sm ">Senha</p>
                             <Input type="password" place="Digite seu senha:" func={handlePasswordChange} />
@@ -81,23 +126,22 @@ export function SignUpArea(){
                         <div className="mt-[20px] mb-[20px]">
                             <p className="my-[4px] text-sm">Tipo de usuário</p>
                             <form className="text-[#000]">
-                                <select className="rounded-[12px] p-[5px]" name="tipoUsuario" required="required" onChange={ev => setUserSelected(ev.target.value)}>
-                                <option value="">Tipo de usuario</option>
-                                <option value="usuarioGeral">Usuario geral</option>
-                                    <option value="Coordenador">Coordenador</option>
+                                <select value={permission} className="rounded-[12px] p-[5px]" name="tipoUsuario" required="required" onChange={ev => setPermission(ev.target.value)}>
+                                <option value="USUARIO">Usuario geral</option>
+                                <option value="COORDENADOR">Coordenador</option>
                                 </select>
                             </form>
                         </div>
                         
-                        {userSelected == 'Coordenador' ? 
+                        {permission == 'COORDENADOR' ? 
                             <div className="mt-[20px] mb-[50px]">
                                 <p className="my-[4px] text-sm">Tipo de coordenador</p>
                                 <form className="text-[#000] ">
-                                    <select name="tipoCoordenador" required="required" className="rounded-[12px] p-[5px]">
+                                    <select name="tipoCoordenador" required="required" className="rounded-[12px] p-[5px]" onChange={ev => setCoordinatorType(ev.target.value)}>
                                     <option value="">Tipo de coordenador</option>
-                                        <option value="coordenadorPesquisa">Coordenador de pesquisa</option>    
-                                        <option value="coordenadorExtensao">Coordenador de extensão</option>
-                                        <option value="CoordenadorInovacao">Coordenador de inovação</option>
+                                        <option value="PESQUISA">Coordenador de pesquisa</option>    
+                                        <option value="EXTENSÃO">Coordenador de extensão</option>
+                                        <option value="INOVAÇÃO">Coordenador de inovação</option>
                                     </select>
                                 </form>
                             </div>
@@ -106,7 +150,7 @@ export function SignUpArea(){
                     </div>
 
                     <div className="">
-                        <Button name="Cadastrar" func={formTest} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
+                        <Button name="Cadastrar" func={save} style="text-[#1C3C78] text-[16px] font-bold border-none rounded-[12px]  w-[100px] h-[30px] shadow-2xl shadow-indigo-500/40  bg-[#fff] duration-500 hover:bg-[#EC2026] hover:text-[#fff] hover:shadow-inner"/>
                     </div>
 
                     <div className="mt-[20px]">

@@ -5,9 +5,16 @@ import { MenuCoordinator } from "../../components/template/MenuCoordinator/MenuC
 import { NoticeCard } from "../../components/organism/NoticeCard/NoticeCard";
 import { Button } from "../../components/atomic/Button/Button";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import jwt from 'jwt-decode';
 
 
 export function CoordinatorNotices(){
+
+    const data = JSON.parse(localStorage.getItem("editaisupe"));
+    const decode = jwt(data.token);
+    const email = decode.sub;
 
     const card = [
         {
@@ -46,7 +53,27 @@ export function CoordinatorNotices(){
         },
     ]
 
-    const coordinatorType = 'Coordenador de extensão'
+    const getUser = async() => {
+        try {
+            const user = await axios.get(`http://localhost:8080/users/email/${email}`, {
+                headers: {
+                    Authorization: `Bearer ${data.token}`,
+                }
+            });
+            setUser(user.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        getUser();
+    }, []);
+
+    const userType = user.permission == 'COORDENADOR' ? user.permission + ' DE ' + user.coordinatorType : user.permission + " GERAL"
     const userName = 'Jamuelton'
     const but = true
 
@@ -56,7 +83,7 @@ export function CoordinatorNotices(){
                 <Header/>
                 <MenuCoordinator/>
             </div>
-            <NameAndType coordinatorType={coordinatorType} userName={userName}/>
+            <NameAndType coordinatorType={userType} userName={user.name}/>
             <div className="flex flex-row justify-center my-[20px]">
                 <Link to="/add-notices">
                     <Button style="bg-[#1C3C78] text-[#fff] w-[150px] tablet:w-[200px] desktop:w-[300px] tablet:h-[34px] desktop:h-[40px] rounded-[16px] text-[20px] shadow-2xl hover:shadow-none" name="Novo Edital"/>
